@@ -19,191 +19,169 @@ let lives;
 let jump_sound;
 let looping_sound;
 
-function preload()
-{
-	jump_sound = loadSound('assets/jump.wav');
-	jump_sound.setVolume(0.1);
+function preload() {
+    jump_sound = loadSound('assets/jump.wav');
+    jump_sound.setVolume(0.1);
 }
 
 //start the game 
 function setup() {
-	lives = 3;
-	start = startGame();
+    lives = 3;
+    start = startGame();
 }
 
-function draw() 
-{
-	background('lightcyan');
-	noStroke();
-    
-	//3D effect
-	fill('lightseagreen');
-	rect(0, floorPos_y, width, height - floorPos_y);
-	fill('seagreen')
-	rect(0, floorPos_y, width, height / 20);
-	push();
-	translate(scrollPos, 0);
-    
-	//Draw clouds.
-	drawClouds();
-    
-	//Draw mountains.
-	drawMountains();
-    
-	//Draw trees.
-	drawTrees();
-    
-	//Draw canyons.
-	for(var i = 0; i < canyons.length; i++) 
-    {
-		drawCanyon(canyons[i]);
-		checkCanyon(canyons[i]);
-	}
-    
-	//Draw collectable items.
-	for(var i = 0; i < collectibles.length; i++) 
-    {
-		if(!collectibles[i].isFound) 
-        {
-			drawCollectable(collectibles[i]);
-			checkCollectable(collectibles[i]);
-		}
-	}
-    
-	//Draw platforms
-	for(var i = 0; i < platforms.length; i++) 
-    {
-		platforms[i].draw();
-	}
-    
-	//Draw flagpole
-	renderFlagpole();
-    
-	//Check flagpole
-	if(!flagpole.isReached) 
-    {
-		checkFlagpole();
-	} 
-    else 
-    {
-		fill(0, 0, 0);
-		noStroke();
-        
-		textSize(14);
-		textFont('Helvetica');
-		return text("Level complete. Press space to continue", flagpole.x_pos - 100, floorPos_y - 350);
-	}
-    
-	//Draw enemies
-	for(var i = 0; i < enemies.length; i++) 
-    {
-		enemies[i].draw();
-		var isContact = enemies[i].checkContact(gameChar_world_x, gameChar_y);
-        
-		if(isContact) 
-        {
-			if(lives > 0) {
-				lives -= 1;
-				startGame();
-				break;
-			}
-		}
-	}
-	pop();
-    
-	//Draw game score token 
-	fill(0, 0, 0);
-	noStroke();
-    
-	textSize(12);
-	textFont('Verdana');
-	text("Score: " + game_score, 20, 20);
-    
-	//Draw live tokens
-	for(var i = 0; i < lives; i++) 
-    {
-		drawLiveTokens(100 + (i * 35));
-	}
-    
-	//Draw game character.
-	drawGameChar();
-    
-	//Check how many lives the character has left
-	checkPlayerDie(lives);
-    
-	//Draw game over text
-	if(lives == 0) 
-    {
-		fill(0, 0, 0);
-		noStroke();
-        
-		textSize(14);
-		textFont('Trebuchet MS');
-		return text("Game over. Press space to continue.", gameChar_world_x, floorPos_y - 250);
-	}
-    
-	//Game interaction logic
-	moveLeft();
-	moveRight();
-	fall();
-    
-	//Update real position of gameChar for collision detection.
-	gameChar_world_x = gameChar_x - scrollPos;
-    
+function draw() {
+    background('lightcyan');
+    noStroke();
+
+    //3D effect
+    fill('lightseagreen');
+    rect(0, floorPos_y, width, height - floorPos_y);
+    fill('seagreen')
+    rect(0, floorPos_y, width, height / 20);
+    push();
+    translate(scrollPos, 0);
+
+    //Draw clouds.
+    drawClouds();
+
+    //Draw mountains.
+    drawMountains();
+
+    //Draw trees.
+    drawTrees();
+
+    //Draw canyons.
+    for (var i = 0; i < canyons.length; i++) {
+        drawCanyon(canyons[i]);
+        checkCanyon(canyons[i]);
+    }
+
+    //Draw collectable items.
+    for (var i = 0; i < collectibles.length; i++) {
+        if (!collectibles[i].isFound) {
+            drawCollectable(collectibles[i]);
+            checkCollectable(collectibles[i]);
+        }
+    }
+
+    //Draw platforms
+    for (var i = 0; i < platforms.length; i++) {
+        platforms[i].draw('mediumturquoise');
+    }
+
+    //Draw flagpole
+    renderFlagpole();
+
+    //Check flagpole
+    if (!flagpole.isReached) {
+        checkFlagpole();
+    } else {
+        fill(0, 0, 0);
+        noStroke();
+
+        textSize(14);
+        textFont('Helvetica');
+        return text("Level complete. Press space to continue", flagpole.x_pos - 100, floorPos_y - 350);
+    }
+
+    //Draw enemies
+    for (var i = 0; i < enemies.length; i++) {
+        enemies[i].draw();
+        var isContact = enemies[i].checkContact(gameChar_world_x, gameChar_y);
+
+        if (isContact) {
+            if (lives > 0) {
+                lives -= 1;
+                startGame();
+                break;
+            }
+        }
+    }
+    pop();
+
+    //Draw game score token 
+    fill(0, 0, 0);
+    noStroke();
+
+    textSize(12);
+    textFont('Verdana');
+    text("Score: " + game_score, 20, 20);
+
+    //Draw live tokens
+    for (var i = 0; i < lives; i++) {
+        drawLiveTokens(100 + (i * 35));
+    }
+
+    //Draw game character.
+    drawGameChar();
+
+    //Check how many lives the character has left
+    checkPlayerDie(lives);
+
+    //Draw game over text
+    if (lives == 0) {
+        fill(0, 0, 0);
+        noStroke();
+
+        textSize(14);
+        textFont('Trebuchet MS');
+        return text("Game over. Press space to continue.", gameChar_world_x, floorPos_y - 250);
+    }
+
+    //Game interaction logic
+    moveLeft();
+    moveRight();
+    fall();
+
+    //Update real position of gameChar for collision detection.
+    gameChar_world_x = gameChar_x - scrollPos;
+
 }
 // ---------------------
 // Key control functions
 // ---------------------
-function keyPressed() 
-{
-	//left arrow key sets isLeft to true;
-	if(keyCode == 37) 
-    {
-		isLeft = true;
-	}
-    
-	//right arrowy key sets isRight to true
-	if(keyCode == 39) 
-    {
-		isRight  = true;
-	}
-    
-	//space key makes the character jump 
-	if(keyCode == 32 && (gameChar_y == floorPos_y) && lives != 0) 
-    {
-		gameChar_y = gameChar_y - 100;
-		jump_sound.play();
-	}
-    
-	/*
-	    continue playing the game if 
-	    level one has been reached 
-	*/
-	if(flagpole.isReached && keyCode == 32) 
-    {
-		setup();
-	}
-    
-	/*
-	    replay game if lives = 0
-	*/
-	if(lives == 0 && keyCode == 32) 
-    {
-		setup();
-	}
+function keyPressed() {
+    //left arrow key sets isLeft to true;
+    if (keyCode == 37) {
+        isLeft = true;
+    }
+
+    //right arrowy key sets isRight to true
+    if (keyCode == 39) {
+        isRight = true;
+    }
+
+    //space key makes the character jump 
+    if (keyCode == 32 && (gameChar_y == floorPos_y) && lives != 0) {
+        gameChar_y = gameChar_y - 100;
+        jump_sound.play();
+    }
+
+    /*
+        continue playing the game if 
+        level one has been reached 
+    */
+    if (flagpole.isReached && keyCode == 32) {
+        setup();
+    }
+
+    /*
+        replay game if lives = 0
+    */
+    if (lives == 0 && keyCode == 32) {
+        setup();
+    }
 }
 
-function keyReleased() 
-{
-	//left arrow key sets isLeft to false;
-	if(keyCode == 37) 
-    {
-		isLeft = false;
-	}
-    
-	//right arrowy key sets isRight to false
-	if(keyCode == 39) 
-    {
-		isRight = false;
-	}
+function keyReleased() {
+    //left arrow key sets isLeft to false;
+    if (keyCode == 37) {
+        isLeft = false;
+    }
+
+    //right arrowy key sets isRight to false
+    if (keyCode == 39) {
+        isRight = false;
+    }
 }
