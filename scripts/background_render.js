@@ -94,32 +94,62 @@ function checkCollectable(t_collectable) {
 }
 
 // ---------------------------------
-// Flagpole render and check functions
+// End Flagpole render and check functions
 // ---------------------------------
-function renderFlagpole() {
+function renderEndFlagPole() {
     push();
     strokeWeight(5);
     stroke(0, 0, 0);
 
-    line(flagpole.x_pos, floorPos_y, flagpole.x_pos, floorPos_y - 250);
+    line(end_flagPole.x_pos, floorPos_y, end_flagPole.x_pos, floorPos_y - 250);
     fill(0, 100, 0);
     noStroke();
 
-    if (flagpole.isReached) {
-        rect(flagpole.x_pos, floorPos_y - 250, 50, 50);
+    if (end_flagPole.isReached) {
+        rect(end_flagPole.x_pos, floorPos_y - 250, 50, 50);
     } else {
-        rect(flagpole.x_pos, floorPos_y - 50, 50, 50);
+        rect(end_flagPole.x_pos, floorPos_y - 50, 50, 50);
     }
 
     pop();
 }
 
-function checkFlagpole() {
+function checkEndFlagPole() {
     let distance;
-    distance = abs(gameChar_world_x - flagpole.x_pos);
+    distance = abs(gameChar_world_x - end_flagPole.x_pos);
 
     if (distance < 5) {
-        flagpole.isReached = true;
+        end_flagPole.isReached = true;
+    }
+}
+
+// ---------------------------------
+// Begin flagpole and check functions
+// ---------------------------------
+function renderBeginFlagPole() {
+    push();
+    strokeWeight(5);
+    stroke(0, 0, 0);
+    
+    line(begin_flagPole.x_pos, floorPos_y, begin_flagPole.x_pos, floorPos_y - 250);
+    fill(204, 229, 255);
+    noStroke();
+    
+    if (begin_flagPole.isReached) {
+        rect(begin_flagPole.x_pos, floorPos_y - 250, 50, 50);
+    } else {
+        rect(begin_flagPole.x_pos, floorPos_y - 50, 50, 50);
+    }
+
+    pop();
+}
+
+function checkBeginFlagPoleIsReached() {
+    let distance;
+    distance = abs(gameChar_world_x - begin_flagPole.x_pos);
+
+    if (distance < 5) {
+        begin_flagPole.isReached = true;
     }
 }
 

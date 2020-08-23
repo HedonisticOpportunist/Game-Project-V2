@@ -29,6 +29,9 @@ var treePos_y;
 var canyons_width;
 var game_score;
 var isLooping;
+var end_flagPole;
+var begin_flagPole;
+
 /*
     enemies
 */
@@ -324,6 +327,11 @@ function startGame() {
             x_pos: 3500,
             y_pos: floorPos_y,
             width: canyons_width
+        },
+        {
+            x_pos: -1600,
+            y_pos: floorPos_y,
+            width: canyons_width
         }
     ];
 
@@ -389,16 +397,28 @@ function startGame() {
             y_pos: floorPos_y,
             size: 2,
             isFound: false
+        },
+        {
+            x_pos: -1700,
+            y_pos: floorPos_y,
+            size: 2,
+            isFound: false
         }
     ];
 
     /*
-        flagpole
+        flagpoles
     */
-    flagpole = {
+    end_flagPole = {
         x_pos: 2100,
         isReached: false
     };
+    
+    begin_flagPole = {
+        
+        x_pos: - 2000,
+        isReached: false
+    }  
 
     /*
         platforms
@@ -417,5 +437,5 @@ function startGame() {
     platforms.push(createPlatforms(-550, platform_y, platform_length, 'paleturquoise'));
     platforms.push(createPlatforms(-850, platform_y, platform_length, 'mediumturquoise'));
     platforms.push(createPlatforms(-1200, platform_y, platform_length, 'paleturquoise'));
-    
+      
 }

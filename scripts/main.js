@@ -11,7 +11,11 @@
  
  Initially, I was a bit sceptical on the platforms because they did not seem to add much value to the game, and I was not sure if I would be able to create a decent design for them. However, when it came to implementing the enemies, I realised that I needed something that offered the player a bit of respite from the peskier of the lot, which is why I decided to add a few platforms scattered throughout the game in order to make it easier to hide/escape. It was also important to find strategic locations. 
  
- Of course, I am still not entirely convinced that it is quite right, as it seems to be hard for the player to jump on the platforms from time to time. But I also think that I found a somewhat nice colour of the platforms that make them fit in well with the overall aesthetics of the game.  
+ Of course, I am still not entirely convinced that it is quite right, as it seems to be hard for the player to jump on the platforms from time to time. But I also think that I found a somewhat nice colour of the platforms that make them fit in well with the overall aesthetics of the game. 
+ 
+ OTHER NOTES 
+ 
+ Other minor additions that I made were that the game has a clearly defined ending and beginning. My partner argued that this made no sense; however, I just felt it was nicer to have two flagpole where you could end a level than the the player wander off into an eternal, never-ending abyss of cyan background once objects were no longer being drawn. There were other minor variations, but I am not sure I remember them all. 
 
  
 */
@@ -70,19 +74,34 @@ function draw() {
         platforms[i].draw('mediumturquoise');
     }
 
-    //Draw flagpole
-    renderFlagpole();
+    //Draw end flagpole
+    renderEndFlagPole();
 
-    //Check flagpole
-    if (!flagpole.isReached) {
-        checkFlagpole();
+    //Check end flagpole
+    if (!end_flagPole.isReached) {
+        checkEndFlagPole();
     } else {
         fill(0, 0, 0);
         noStroke();
 
         textSize(14);
         textFont('Helvetica');
-        return text("Level complete. Press space to continue", flagpole.x_pos - 100, floorPos_y - 350);
+        return text("Level complete. Press space to continue", end_flagPole.x_pos - 100, floorPos_y - 350);
+    }
+    
+    //Draw begin flagpole
+    renderBeginFlagPole();
+    
+    //Check that the begin flagpole has been reached
+     if (!begin_flagPole.isReached) {
+        checkBeginFlagPoleIsReached();
+    } else {
+        fill(0, 0, 0);
+        noStroke();
+
+        textSize(14);
+        textFont('Helvetica');
+        return text("Level complete. Press space to continue", begin_flagPole.x_pos - 100, floorPos_y - 350);
     }
 
     //Draw enemies
@@ -162,7 +181,7 @@ function keyPressed() {
         continue playing the game if 
         level one has been reached 
     */
-    if (flagpole.isReached && keyCode == 32) {
+    if ((end_flagPole.isReached && keyCode == 32) || (begin_flagPole.isReached && keyCode == 32)) {
         setup();
     }
 
