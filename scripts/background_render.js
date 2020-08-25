@@ -82,14 +82,28 @@ function drawCollectable(t_collectable) {
 
 // Function to check character has collected an item.
 function checkCollectable(t_collectable) {
+    //declaration of range variable used
+    //within this function only 
     let range;
+    
     range = int(dist(t_collectable.x_pos, t_collectable.y_pos, gameChar_world_x, gameChar_y));
-
+    
+    //if the collectible is within range and equals the y coordinate of the ground
+    //then the collectible has been found 
     if (range < 48 && range > 10) {
-        t_collectable.isFound = true;
-        game_score += 1;
-    } else {
-        t_collectable.isFound = false;
+        t_collectable.isFound = true; 
+        
+        if (t_collectable.isFound && t_collectable.y_pos == floorPos_y)
+        {
+            game_score += 1;
+        }
+        
+         
+        if (t_collectable.isFound && t_collectable.y_pos == platform_level)
+        {
+            game_score += 2;
+        }
+        
     }
 }
 
@@ -102,7 +116,7 @@ function renderEndFlagPole() {
     stroke(0, 0, 0);
 
     line(end_flagPole.x_pos, floorPos_y, end_flagPole.x_pos, floorPos_y - 250);
-    fill(0, 100, 0);
+    fill('turquoise');
     noStroke();
 
     if (end_flagPole.isReached) {
@@ -114,6 +128,7 @@ function renderEndFlagPole() {
     pop();
 }
 
+//check that the player reached the flagpole
 function checkEndFlagPole() {
     let distance;
     distance = abs(gameChar_world_x - end_flagPole.x_pos);
@@ -132,7 +147,7 @@ function renderBeginFlagPole() {
     stroke(0, 0, 0);
     
     line(begin_flagPole.x_pos, floorPos_y, begin_flagPole.x_pos, floorPos_y - 250);
-    fill(204, 229, 255);
+    fill('darkturquoise');
     noStroke();
     
     if (begin_flagPole.isReached) {
@@ -144,6 +159,7 @@ function renderBeginFlagPole() {
     pop();
 }
 
+//check that the flagpole has been reached
 function checkBeginFlagPoleIsReached() {
     let distance;
     distance = abs(gameChar_world_x - begin_flagPole.x_pos);
@@ -157,7 +173,7 @@ function checkBeginFlagPoleIsReached() {
 // Platform render function
 // ---------------------------------
 function createPlatforms(x, y, length, colour) {
-    var p = {
+    var platform = {
         x: x,
         y: y,
         length: length,
@@ -177,5 +193,31 @@ function createPlatforms(x, y, length, colour) {
             return false;
         }
     }
-    return p;
+    return platform;
 }
+
+// ---------------------------------
+// Star render function 
+// (code taken / modified from pj5 examples)
+// ---------------------------------
+function renderStar(x, y) {
+    let angle = TWO_PI / 5;
+    let half_angle = angle / 2.0;
+    
+    noStroke();
+    fill('lightyellow');
+    
+    beginShape();
+    for (var i = 0; i < TWO_PI; i+= angle) {
+        
+        let star_x = x + cos(i) * 70;
+        let star_y = y + sin(i) * 70;
+        
+        vertex(star_x, star_y);
+        star_x = x + cos(i + half_angle) * 30;
+        star_y = y + sin(i + half_angle) * 30;
+        
+        vertex(star_x, star_y);
+    }
+    endShape(CLOSE);
+  }

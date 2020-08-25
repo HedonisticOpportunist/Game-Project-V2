@@ -20,7 +20,9 @@ var clouds;
 var mountains;
 var trees;
 var canyons;
+
 var collectibles;
+var stars;
 /*
     variables used throughout
     the game consistently
@@ -29,9 +31,10 @@ var treePos_y;
 var canyons_width;
 var game_score;
 var isLooping;
+
 var end_flagPole;
 var begin_flagPole;
-
+var platform_level;
 /*
     enemies
 */
@@ -74,12 +77,21 @@ function startGame() {
     treePos_y = 200;
     game_score = 0;
     isLooping = false;
+    
+    platform_level = floorPos_y - 105;
 
     /*
         enemies initialisation
     */
     enemies = [];
-    enemies.push(new Enemy(100, floorPos_y - 10, 100));
+    
+    //enemies on platform level
+    enemies.push(new Enemy(100, platform_level, 100));
+    enemies.push(new Enemy(-560, platform_level, 85));
+    enemies.push(new Enemy(1600, platform_level, 85));
+    
+    
+    //enemies on the ground 
     enemies.push(new Enemy(750, floorPos_y - 10, 250));
     enemies.push(new Enemy(1600, floorPos_y - 10, 300));
     enemies.push(new Enemy(-1200, floorPos_y - 10, 250))
@@ -338,6 +350,7 @@ function startGame() {
     /*
         collectibles array
     */
+    
     collectibles = [{
             x_pos: 450,
             y_pos: floorPos_y,
@@ -346,10 +359,28 @@ function startGame() {
         },
         {
             x_pos: 750,
-            y_pos: 430,
+            y_pos: floorPos_y,
             size: 6,
             isFound: false
+        },          
+        {
+            x_pos: 90,
+            y_pos: floorPos_y,
+            size: 3,
+            isFound: false
         },
+        {
+            x_pos: 85,
+            y_pos: floorPos_y,
+            size: 5,
+            isFound: false
+        },
+        {
+            x_pos: 45,
+            y_pos: floorPos_y,
+            size: 3,
+            isFound: false
+        },            
         {
             x_pos: 950,
             y_pos: floorPos_y,
@@ -403,22 +434,77 @@ function startGame() {
             y_pos: floorPos_y,
             size: 2,
             isFound: false
+        },
+        {
+            x_pos: -750,
+            y_pos: platform_level,
+            size: 5,
+            isFound: false
+        },
+        {
+            x_pos: 750,
+            y_pos: platform_level,
+            size: 5,
+            isFound: false
+        },
+        {
+            x_pos: 1500,
+            y_pos: platform_level,
+            size: 5,
+            isFound: false
+        },  
+        {
+            x_pos: 1050,
+            y_pos: platform_level,
+            size: 5,
+            isFound: false
         }
     ];
-
+    
+    /*
+       stars
+    */
+    stars = [{
+            x_pos: -550,
+            y_pos: platform_level  
+        },
+        {
+            x_pos: 100,
+            y_pos: platform_level
+        },
+        {
+            x_pos: 1600,
+            y_pos: platform_level
+        },
+        {
+            x_pos: 1050,
+            y_pos: platform_level
+        },
+        {
+            x_pos: -850,
+            y_pos: platform_level
+        }
+    ];
+    
     /*
         flagpoles
     */
+    
+    //flagpole at the 
+    //end of the game (to the right)
     end_flagPole = {
         x_pos: 2100,
         isReached: false
     };
     
+    
+    //flagpole at the 
+    //end of the game (to the left)
     begin_flagPole = {
         
         x_pos: - 2000,
         isReached: false
-    }  
+    };  
 
     /*
         platforms
@@ -429,6 +515,7 @@ function startGame() {
 
     platforms = [];
 
+    //platforms alternate between two colours
     platforms.push(createPlatforms(100, platform_y, platform_length, 'paleturquoise'));
     platforms.push(createPlatforms(750, platform_y, platform_length, 'mediumturquoise'));
     platforms.push(createPlatforms(1050, platform_y, platform_length, 'paleturquoise'));

@@ -1,23 +1,28 @@
 /*
- EXTENSION 1: ENEMIES
+  EXTENSION 1: ENEMIES
  
- To be honest, I am not an incredibly talented gamer and tend to die quickly. Therefore, it may have been better for me not to add this extension. However, I also believe that games should pose a challenge, which is why I decided to make to add enemies, after all. In the end, I am not just writing this game for myself, but for others to play as well. 
- 
- Moreover, I found the programmatic aspects of implementing the enemies interesting since the code is a tad bit more challenging than some of the other ones introduced in the course. It also is important to point out that factory patterns are quite common in video game code. That is why I think learning about these patterns as early as possible is beneficial for anyone interested in writing video games. 
- 
- The actual challenge in implementing this lies in placing the enemies in strategic locations that make the game difficult yet still fun to play. I am not sure that I good that aspect quite right. 
+To be honest, I am not a talented gamer and die quickly -- no matter how difficult or easy the game tends to be. Therefore, it may have been better for me not to add this extension. Regardless of that, I also believe that games should pose a challenge, which is why I decided to add enemies after all. 
 
- EXTENSION 2: PLATFORMS
+However, one of the challenging aspects of adding enemies is taking into consideration how they affect the game’s playability. I tried to make the game a bit more difficult, but do wonder if I made things a bit more annoying by adding two of the enemies on platforms in places where the player also has to jump over a cliff. Personally, I found the challenge interesting, but I am not sure how others would feel. 
  
- Initially, I was a bit sceptical on the platforms because they did not seem to add much value to the game, and I was not sure if I would be able to create a decent design for them. However, when it came to implementing the enemies, I realised that I needed something that offered the player a bit of respite from the peskier of the lot, which is why I decided to add a few platforms scattered throughout the game in order to make it easier to hide/escape. It was also important to find strategic locations. 
- 
- Of course, I am still not entirely convinced that it is quite right, as it seems to be hard for the player to jump on the platforms from time to time. But I also think that I found a somewhat nice colour of the platforms that make them fit in well with the overall aesthetics of the game. 
- 
- OTHER NOTES 
- 
- Other minor additions that I made were that the game has a clearly defined ending and beginning. My partner argued that this made no sense; however, I just felt it was nicer to have two flagpole where you could end a level than the the player wander off into an eternal, never-ending abyss of cyan background once objects were no longer being drawn. There were other minor variations, but I am not sure I remember them all. 
+Moreover, I found the programmatic aspects of implementing the enemies interesting since the code is more challenging than some of the other ones introduced in the course. It also is important to point out that factory patterns are quite common in video game code. That is why I think learning about these patterns as early as possible is beneficial for anyone interested in writing video games. 
 
+The modifications I made were minor, with the challenge being more on where to place the enemies and determining what the range should be between the playable character and the enemy itself. I also tried to create a design that was cute, but still gloomy in some aspects. 
  
+EXTENSION 2: PLATFORMS
+ 
+Initially, I was sceptical of adding platforms and thought that they would be more useful as a sort of ‘resting point’ that offered the player a chance to escape enemies for a bit. However, while refactoring the game, I realised that it would be nice to place collectibles on top of the platform as well as placing enemies hither and thither in order to challenge the player. This is also why the player scores higher when gathering collectibles when on platform level. 
+
+The actual changes I made to the code were minor; however, I did add a colour variable that allowed me to alternate between two different coloured platforms throughout the game. I also decided to add stars on the platforms, because I thought it made the game look a bit nicer. 
+
+What I probably found most challenging was ensuring that the character actually walked on top of the platform when landing on it. I know it took me a couple of attempts to get that working correctly. 
+ 
+OTHER NOTES 
+ 
+Other minor additions that I made were that the game has a clearly defined ending and beginning in the form of two flagpoles placed at the beginning (when the player moves to the left) and the end (when the player moves to the right). My partner argued that this made no sense as it went against the philosophy of a platformer; however, I just felt it was nicer to have two flagpoles where you could end a level than have the player wander off into an eternal, never-ending abyss of cyan background once objects were no longer being drawn. As I am not skilled enough yet to dynamically generate objects, this one way to avoid the scenario outlined above. 
+
+Other changes I made were not deleting the jumping sound because I liked it and -- more importantly -- breaking some of the code up sub sections that are shared between several scripts. This made it easier for me to refactor the code and also have less lines of code in a single file. Ultimately, the goal would be to use OO, but -- for now -- this change was sufficient enough for me to be to work in an efficient manner. 
+
 */
 let lives;
 let jump_sound;
@@ -38,7 +43,7 @@ function draw() {
     background('lightcyan');
     noStroke();
 
-    //3D effect
+    //'3D effect'
     fill('lightseagreen');
     rect(0, floorPos_y, width, height - floorPos_y);
     fill('seagreen')
@@ -68,13 +73,18 @@ function draw() {
             checkCollectable(collectibles[i]);
         }
     }
+    
+    //Draw stars on the platform
+    for (var i = 0; i < stars.length; i++) {
+        renderStar(stars[i].x_pos, stars[i].y_pos);
+    }
 
     //Draw platforms
     for (var i = 0; i < platforms.length; i++) {
         platforms[i].draw('mediumturquoise');
     }
 
-    //Draw end flagpole
+    //Draw end flagpole which is located to the right
     renderEndFlagPole();
 
     //Check end flagpole
@@ -89,7 +99,7 @@ function draw() {
         return text("Level complete. Press space to continue", end_flagPole.x_pos - 100, floorPos_y - 350);
     }
     
-    //Draw begin flagpole
+    //Draw begin flagpole which is located towards the left
     renderBeginFlagPole();
     
     //Check that the begin flagpole has been reached
