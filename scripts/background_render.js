@@ -180,6 +180,14 @@ function createPlatforms(x, y, length, colour) {
         colour: colour,
         draw: function() {
             fill(this.colour);
+            
+            //let the platforms shake a little if the 
+            //colour is medium turqouise 
+            if (colour == "mediumturquoise")
+            {
+                this.x = this.x + random(-0.5, 0.5); 
+            }
+            
             rect(this.x, this.y, this.length, 50);
         },
 

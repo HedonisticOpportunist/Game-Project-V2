@@ -181,12 +181,12 @@ function keyPressed() {
         isRight = true;
     }
 
-    //space key makes the character jump 
+    //space key makes the character jump when ground level
     if (keyCode == 32 && (gameChar_y == floorPos_y) && lives != 0) {
         gameChar_y = gameChar_y - 100;
         jump_sound.play();
     }
-
+    
     /*
         continue playing the game if 
         level one has been reached 
