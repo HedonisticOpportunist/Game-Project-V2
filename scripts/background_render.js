@@ -197,7 +197,7 @@ function createPlatforms(x, y, length, colour) {
                 if (platform_distance >= -2 && platform_distance < 6) {
                     return true;
                 }
-            }
+             }
             return false;
         }
     }

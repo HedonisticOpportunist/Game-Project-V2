@@ -80,8 +80,8 @@ function draw() {
     }
 
     //Draw platforms
-    for (var i = 0; i < platforms.length; i++) {
-        platforms[i].draw('mediumturquoise');
+    for (var  i = 0; i < platforms.length; i++) {
+        platforms[i].draw();
     }
 
     //Draw end flagpole which is located to the right
@@ -96,7 +96,9 @@ function draw() {
 
         textSize(14);
         textFont('Helvetica');
-        return text("Level complete. Press space to continue", end_flagPole.x_pos - 100, floorPos_y - 350);
+        return text("Level complete. Your game score is: " + game_score + ". " 
+                    + "\n" + "Press space to continue.",
+                    end_flagPole.x_pos - 250, floorPos_y - 350);
     }
     
     //Draw begin flagpole which is located towards the left
@@ -111,7 +113,9 @@ function draw() {
 
         textSize(14);
         textFont('Helvetica');
-        return text("Level complete. Press space to continue", begin_flagPole.x_pos - 100, floorPos_y - 350);
+        return text("Level complete. Your game score is: " + game_score + ". " 
+                    + "\n" + " Press space to continue.",
+                    begin_flagPole.x_pos + 100, floorPos_y - 350);
     }
 
     //Draw enemies
@@ -185,6 +189,12 @@ function keyPressed() {
     if (keyCode == 32 && (gameChar_y == floorPos_y) && lives != 0) {
         gameChar_y = gameChar_y - 100;
         jump_sound.play();
+    }
+    
+    if (gameChar_y == 332) 
+    {
+        console.log("I am on the platform now."); 
+        //gameChar_y = gameChar_y - 100;
     }
     
     /*
