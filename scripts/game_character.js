@@ -3,262 +3,264 @@
 // ------------------------------
 // Function to draw the game character.
 function drawGameChar() {
-    //the game character
-    if (isLeft && isFalling) {
-        //Jumping to the left
+	//the game character
+	if (is_left && is_falling) {
+		//Jumping to the left
 
-        //head 
-        strokeWeight(2);
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+		//head 
+		strokeWeight(2);
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
-        point(gameChar_x - 3, gameChar_y - 65);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
+		point(game_char_x - 3, game_char_y - 65);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x - 3, gameChar_y - 55);
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x - 3, game_char_y - 55);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 25, gameChar_y - 5);
-        endShape();
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 25, game_char_y - 5);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 25, gameChar_y - 5);
-        endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 25, game_char_y - 5);
+		endShape();
 
-        //hands 
-        beginShape(LINES);
-        vertex(gameChar_x - 25, gameChar_y - 60);
-        vertex(gameChar_x - 12, gameChar_y - 50);
-        endShape();
+		//hands 
+		beginShape(LINES);
+		vertex(game_char_x - 25, game_char_y - 60);
+		vertex(game_char_x - 12, game_char_y - 50);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 25, gameChar_y - 50);
-        vertex(gameChar_x + 12, gameChar_y - 40);
-        endShape();
-    } else if (isRight && isFalling) {
-        //head 
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+		beginShape(LINES);
+		vertex(game_char_x + 25, game_char_y - 50);
+		vertex(game_char_x + 12, game_char_y - 40);
+		endShape();
+	} else if (is_right && is_falling) {
+		//head 
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
-        point(gameChar_x + 3, gameChar_y - 65);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
+		point(game_char_x + 3, game_char_y - 65);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x + 3, gameChar_y - 55);
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x + 3, game_char_y - 55);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 25, gameChar_y - 5);
-        endShape();
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 25, game_char_y - 5);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 25, gameChar_y - 5);
-        endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 25, game_char_y - 5);
+		endShape();
 
-        //hands 
-        beginShape(LINES);
-        vertex(gameChar_x - 25, gameChar_y - 50);
-        vertex(gameChar_x - 12, gameChar_y - 40);
-        endShape();
+		//hands 
+		beginShape(LINES);
+		vertex(game_char_x - 25, game_char_y - 50);
+		vertex(game_char_x - 12, game_char_y - 40);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 25, gameChar_y - 60);
-        vertex(gameChar_x + 12, gameChar_y - 50);
-        endShape();
-    } else if (isLeft) {
-        //Walking, turned left
+		beginShape(LINES);
+		vertex(game_char_x + 25, game_char_y - 60);
+		vertex(game_char_x + 12, game_char_y - 50);
+		endShape();
+	} else if (is_left) {
+		//Walking, turned left
 
-        //head 
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+		//head 
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
-        point(gameChar_x - 3, gameChar_y - 65);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
+		point(game_char_x - 3, game_char_y - 65);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x - 3, gameChar_y - 55);
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x - 3, game_char_y - 55);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 25, gameChar_y);
-        endShape();
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 25, game_char_y);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 12, gameChar_y);
-        endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 12, game_char_y);
+		endShape();
 
-        //hands 
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 45);
-        vertex(gameChar_x - 25, gameChar_y - 35);
-        endShape();
+		//hands 
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 45);
+		vertex(game_char_x - 25, game_char_y - 35);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 45);
-        vertex(gameChar_x + 12, gameChar_y - 35);
-        endShape();
-    } else if (isRight) {
-        //Walking, turned right
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 45);
+		vertex(game_char_x + 12, game_char_y - 35);
+		endShape();
 
-        //head 
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+	} else if (is_right) {
+		//Walking, turned right
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
-        point(gameChar_x + 3, gameChar_y - 65);
+		//head 
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x + 3, gameChar_y - 55);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
+		point(game_char_x + 3, game_char_y - 65);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x + 3, game_char_y - 55);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 12, gameChar_y);
-        endShape();
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 25, gameChar_y);
-        endShape();
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 12, game_char_y);
+		endShape();
 
-        //hands 
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 45);
-        vertex(gameChar_x - 12, gameChar_y - 35);
-        endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 25, game_char_y);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 45);
-        vertex(gameChar_x + 25, gameChar_y - 35);
-        endShape();
-    } else if (isFalling || isPlummeting) {
-        //Jumping facing forwards
+		//hands 
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 45);
+		vertex(game_char_x - 12, game_char_y - 35);
+		endShape();
 
-        //head 
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 45);
+		vertex(game_char_x + 25, game_char_y - 35);
+		endShape();
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
+	} else if (is_falling || is_plummeting) {
+		//Jumping facing forwards
 
-        point(gameChar_x - 3, gameChar_y - 65);
-        point(gameChar_x + 3, gameChar_y - 65);
+		//head 
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x, gameChar_y - 55);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		point(game_char_x - 3, game_char_y - 65);
+		point(game_char_x + 3, game_char_y - 65);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 25, gameChar_y - 5);
-        endShape();
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 25, gameChar_y - 5);
-        endShape();
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x, game_char_y - 55);
 
-        //hands 
-        beginShape(LINES);
-        vertex(gameChar_x - 25, gameChar_y - 60);
-        vertex(gameChar_x - 12, gameChar_y - 50);
-        endShape();
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        beginShape(LINES);
-        vertex(gameChar_x + 25, gameChar_y - 60);
-        vertex(gameChar_x + 12, gameChar_y - 50);
-        endShape();
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 25, game_char_y - 5);
+		endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 25, game_char_y - 5);
+		endShape();
 
-    } else {
-        //Standing, facing frontwards
+		//hands 
+		beginShape(LINES);
+		vertex(game_char_x - 25, game_char_y - 60);
+		vertex(game_char_x - 12, game_char_y - 50);
+		endShape();
 
-        //head 
-        fill('powderblue');
-        ellipse(gameChar_x, gameChar_y - 62, 25, 25);
+		beginShape(LINES);
+		vertex(game_char_x + 25, game_char_y - 60);
+		vertex(game_char_x + 12, game_char_y - 50);
+		endShape();
 
-        //eyes
-        stroke(0, 204, 204);
-        strokeWeight(5);
+	} else {
+		//Standing, facing frontwards
 
-        point(gameChar_x - 3, gameChar_y - 65);
-        point(gameChar_x + 3, gameChar_y - 65);
+		//head 
+		fill('powderblue');
+		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
-        stroke(0, 0, 255);
-        strokeWeight(5);
-        point(gameChar_x, gameChar_y - 55);
+		//eyes
+		stroke(0, 204, 204);
+		strokeWeight(5);
 
-        //body 
-        strokeWeight(4);
-        fill('skyblue');
-        rect(gameChar_x - 12, gameChar_y - 47, 25, 30);
+		point(game_char_x - 3, game_char_y - 65);
+		point(game_char_x + 3, game_char_y - 65);
 
-        //legs
-        beginShape(LINES);
-        vertex(gameChar_x - 12, gameChar_y - 20);
-        vertex(gameChar_x - 12, gameChar_y);
-        endShape();
+		stroke(0, 0, 255);
+		strokeWeight(5);
+		point(game_char_x, game_char_y - 55);
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 20);
-        vertex(gameChar_x + 12, gameChar_y);
-        endShape();
+		//body 
+		strokeWeight(4);
+		fill('skyblue');
+		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
-        //hands 
-        beginShape(LINES);
+		//legs
+		beginShape(LINES);
+		vertex(game_char_x - 12, game_char_y - 20);
+		vertex(game_char_x - 12, game_char_y);
+		endShape();
 
-        vertex(gameChar_x - 12, gameChar_y - 45);
-        vertex(gameChar_x - 25, gameChar_y - 35);
-        endShape();
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 20);
+		vertex(game_char_x + 12, game_char_y);
+		endShape();
 
-        beginShape(LINES);
-        vertex(gameChar_x + 12, gameChar_y - 45);
-        vertex(gameChar_x + 25, gameChar_y - 35);
-        endShape();
-    }
+		//hands 
+		beginShape(LINES);
+
+		vertex(game_char_x - 12, game_char_y - 45);
+		vertex(game_char_x - 25, game_char_y - 35);
+		endShape();
+
+		beginShape(LINES);
+		vertex(game_char_x + 12, game_char_y - 45);
+		vertex(game_char_x + 25, game_char_y - 35);
+		endShape();
+	}
 }
