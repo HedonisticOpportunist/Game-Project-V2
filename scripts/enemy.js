@@ -17,15 +17,31 @@ function Enemy(x, y, range) {
 	}
 	this.draw = function () {
 		this.update();
-		//body of the enemy 
-		fill('black');
-		ellipse(this.currentX, this.y, 50, 50);
-		//eyes
-		stroke('firebrick');
-		strokeWeight(10);
-		point(this.currentX - 8, this.y);
-		point(this.currentX + 8, this.y);
-		noStroke();
+		//if enemy is on the ground
+		if (this.y == floor_pos_y - 10) {
+			//body of the enemy 
+			fill('black');
+			ellipse(this.currentX, this.y, 50, 50);
+			//eyes
+			stroke('firebrick');
+			strokeWeight(10);
+			point(this.currentX - 8, this.y);
+			point(this.currentX + 8, this.y);
+			noStroke();
+		}
+		//enemy is on platform level
+		else {
+			//body of the enemy 
+			fill('white');
+			ellipse(this.currentX, this.y, 50, 50);
+			//eyes
+			stroke('firebrick');
+			strokeWeight(10);
+			point(this.currentX - 8, this.y);
+			point(this.currentX + 8, this.y);
+			noStroke();
+
+		}
 	}
 	this.checkContact = function (gc_x, gc_y) {
 		let enemy_distance = dist(gc_x, gc_y, this.currentX, this.y);

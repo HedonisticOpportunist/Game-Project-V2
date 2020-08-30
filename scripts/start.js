@@ -86,26 +86,6 @@ function startGame() {
 	player_on_platform = 332;
 
 	/*
-	    enemies initialisation
-	*/
-	enemies = [];
-
-	//enemies on platform level
-	enemies.push(new Enemy(100, platform_level, 100));
-    enemies.push(new Enemy(750, platform_level, 100));
-	enemies.push(new Enemy(-560, platform_level, 85));
-    
-	enemies.push(new Enemy(1200, platform_level, 50));
-    enemies.push(new Enemy(-1800, platform_level, 50));
-    enemies.push(new Enemy(-850, platform_level, 85));
-
-
-	//enemies on the ground 
-	enemies.push(new Enemy(750, floor_pos_y - 10, 250));
-	enemies.push(new Enemy(1600, floor_pos_y - 10, 300));
-	enemies.push(new Enemy(-1200, floor_pos_y - 10, 250))
-
-	/*
 	    clouds array
 	*/
 	clouds = [{
@@ -356,132 +336,6 @@ function startGame() {
 		}
 	];
 
-	/*
-	    collectibles array
-	*/
-
-	collectibles = [{
-			x_pos: 450,
-			y_pos: floor_pos_y,
-			size: 5,
-			is_found: false
-		},
-		{
-			x_pos: 750,
-			y_pos: floor_pos_y,
-			size: 6,
-			is_found: false
-		},
-		{
-			x_pos: 90,
-			y_pos: floor_pos_y,
-			size: 3,
-			is_found: false
-		},
-		{
-			x_pos: 85,
-			y_pos: floor_pos_y,
-			size: 5,
-			is_found: false
-		},
-		{
-			x_pos: 45,
-			y_pos: floor_pos_y,
-			size: 3,
-			is_found: false
-		},
-		{
-			x_pos: 950,
-			y_pos: floor_pos_y,
-			size: 4,
-			is_found: false
-		},
-		{
-			x_pos: 1800,
-			y_pos: floor_pos_y,
-			size: 3,
-			is_found: false
-		},
-		{
-			x_pos: 1200,
-			y_pos: floor_pos_y,
-			size: 4,
-			is_found: false
-		},
-		{
-			x_pos: 2000,
-			y_pos: floor_pos_y,
-			size: 4,
-			is_found: false
-		},
-		{
-			x_pos: -650,
-			y_pos: floor_pos_y,
-			size: 3,
-			is_found: false
-		},
-		{
-			x_pos: 1900,
-			y_pos: floor_pos_y,
-			size: 2,
-			is_found: false
-		},
-		{
-			x_pos: -1200,
-			y_pos: floor_pos_y,
-			size: 2,
-			is_found: false
-		},
-		{
-			x_pos: -1500,
-			y_pos: floor_pos_y,
-			size: 2,
-			is_found: false
-		},
-		{
-			x_pos: -1700,
-			y_pos: floor_pos_y,
-			size: 2,
-			is_found: false
-		},
-        {
-			x_pos: 100,
-			y_pos: platform_level,
-			size: 5,
-			is_found: false
-		},
-                    
-		{
-			x_pos: -750,
-			y_pos: platform_level,
-			size: 4,
-			is_found: false
-		},
-		{
-			x_pos: 750,
-			y_pos: platform_level,
-			size: 3,
-			is_found: false
-		},
-		{
-			x_pos: 1500,
-			y_pos: platform_level,
-			size: 5,
-			is_found: false
-		},
-		{
-			x_pos: 1200,
-			y_pos: platform_level,
-			size: 2,
-			is_found: false
-		},
-        {
-			x_pos: -850,
-			y_pos: platform_level,
-            size: 3,
-            is_found: false
-		}
-	];
 
 	/*
 	   stars
@@ -506,7 +360,7 @@ function startGame() {
 			x_pos: -850,
 			y_pos: platform_level
 		},
-        {
+		{
 			x_pos: -1800,
 			y_pos: platform_level
 		}
@@ -533,6 +387,117 @@ function startGame() {
 	};
 
 	/*
+	    enemies initialisation
+	*/
+	enemies = [];
+
+	//enemies on platform level
+	enemies.push(new Enemy(100, platform_level, 100));
+	enemies.push(new Enemy(750, platform_level, 100));
+	enemies.push(new Enemy(-560, platform_level, 85));
+	enemies.push(new Enemy(1500, platform_level, 85));
+
+	enemies.push(new Enemy(1200, platform_level, 50));
+	enemies.push(new Enemy(-1800, platform_level, 50));
+	enemies.push(new Enemy(-850, platform_level, 85));
+
+
+	//enemies on the ground 
+	enemies.push(new Enemy(1600, floor_pos_y - 10, 300));
+	enemies.push(new Enemy(-200, floor_pos_y - 10, 300));
+	enemies.push(new Enemy(-1200, floor_pos_y - 10, 250));
+
+	/*
+	    collectibles array
+	*/
+
+	collectibles = [{
+			x_pos: 202,
+			y_pos: platform_level,
+			size: 5,
+			is_found: false
+		},
+		{
+			x_pos: 802,
+			y_pos: platform_level,
+			size: 2,
+			is_found: false
+		},
+		{
+			x_pos: 1272,
+			y_pos: platform_level,
+			size: 3,
+			is_found: false
+		},
+		{
+			x_pos: 1502,
+			y_pos: platform_level,
+			size: 2,
+			is_found: false
+		},
+		{
+			x_pos: -1673,
+			y_pos: platform_level,
+			size: 5,
+			is_found: false
+		},
+		{
+			x_pos: -418,
+			y_pos: platform_level,
+			size: 3,
+			is_found: false
+		},
+		{
+			x_pos: -763,
+			y_pos: platform_level,
+			size: 4,
+			is_found: false
+		},
+		{
+			x_pos: -1000,
+			y_pos: floor_pos_y,
+			size: 2,
+			is_found: false
+		},
+		{
+			x_pos: 1600,
+			y_pos: floor_pos_y,
+			size: 5,
+			is_found: false
+		},
+		{
+			x_pos: 1900,
+			y_pos: floor_pos_y,
+			size: 5,
+			is_found: false
+		},
+        {
+			x_pos: 1100,
+			y_pos: floor_pos_y,
+			size: 2,
+			is_found: false
+		},
+		{
+			x_pos: 200,
+			y_pos: floor_pos_y,
+			size: 5,
+			is_found: false
+		},
+		{
+			x_pos: 330,
+			y_pos: floor_pos_y,
+			size: 3,
+			is_found: false
+		},
+		{
+			x_pos: 450,
+			y_pos: floor_pos_y,
+			size: 5,
+			is_found: false
+		}
+	];
+
+	/*
 	    platforms
 	*/
 
@@ -543,12 +508,11 @@ function startGame() {
 
 	//platforms alternate between two colours
 	platforms.push(createPlatforms(100, platform_y, platform_length, 'paleturquoise'));
-	platforms.push(createPlatforms(750, platform_y, platform_length, 'mediumturquoise'));
-	platforms.push(createPlatforms(1200, platform_y, platform_length, 'paleturquoise'));
+	platforms.push(createPlatforms(1200, platform_y, platform_length, 'mediumturquoise'));
+	platforms.push(createPlatforms(1500, platform_y, platform_length, 'paleturquoise'));
 
-	platforms.push(createPlatforms(1500, platform_y, platform_length, 'mediumturquoise'));
-	platforms.push(createPlatforms(-550, platform_y, platform_length, 'paleturquoise'));
-	platforms.push(createPlatforms(-850, platform_y, platform_length, 'mediumturquoise'));
-	platforms.push(createPlatforms(-1800, platform_y, platform_length, 'paleturquoise'));
+	platforms.push(createPlatforms(-550, platform_y, platform_length, 'mediumturquoise'));
+	platforms.push(createPlatforms(-850, platform_y, platform_length, 'paleturquoise'));
+	platforms.push(createPlatforms(-1800, platform_y, platform_length, 'mediumturquoise'));
 
 }

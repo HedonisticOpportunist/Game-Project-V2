@@ -63,21 +63,43 @@ function checkCanyon(t_canyon) {
 
 function drawCollectable(t_collectable) {
 
-	// Draw collectable items
-	stroke('darkcyan');
-	strokeWeight(t_collectable.size + 15);
-	point(t_collectable.x_pos, t_collectable.y_pos);
+	//collectible is on platform level
+	if (t_collectable.y_pos == platform_level) {
+		// Draw collectable items
+		stroke('aliceblue');
+		strokeWeight(t_collectable.size + 15);
+		point(t_collectable.x_pos, t_collectable.y_pos);
 
-	stroke(102, 0, 204);
-	strokeWeight(t_collectable.size);
-	point(t_collectable.x_pos, t_collectable.y_pos);
+		stroke(102, 0, 204);
+		strokeWeight(t_collectable.size);
+		point(t_collectable.x_pos, t_collectable.y_pos);
 
-	stroke('paleturquoise');
-	strokeWeight(t_collectable.size + 10);
-	point(t_collectable.x_pos - 10, t_collectable.y_pos);
-	strokeWeight(5);
-	noStroke();
-	fill('skyblue');
+		stroke('cornflowerblue');
+		strokeWeight(t_collectable.size + 10);
+		point(t_collectable.x_pos - 10, t_collectable.y_pos);
+		strokeWeight(5);
+		noStroke();
+		fill('lavender');
+
+	}
+	//platform is on ground level
+	else {
+		// Draw collectable items
+		stroke('darkcyan');
+		strokeWeight(t_collectable.size + 15);
+		point(t_collectable.x_pos, t_collectable.y_pos);
+
+		stroke(102, 0, 204);
+		strokeWeight(t_collectable.size);
+		point(t_collectable.x_pos, t_collectable.y_pos);
+
+		stroke('paleturquoise');
+		strokeWeight(t_collectable.size + 10);
+		point(t_collectable.x_pos - 10, t_collectable.y_pos);
+		strokeWeight(5);
+		noStroke();
+		fill('skyblue');
+	}
 }
 
 // Function to check character has collected an item.

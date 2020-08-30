@@ -114,7 +114,7 @@ function draw() {
 		textFont('Helvetica');
 		return text("Level complete. Your game score is: " + game_score + ". " +
 			"\n" + " Press space to continue.",
-			begin_flagPole.x_pos + 100, floor_pos_y - 350);
+			begin_flagPole.x_pos + 330, floor_pos_y - 350);
 	}
 
 	//Draw enemies
