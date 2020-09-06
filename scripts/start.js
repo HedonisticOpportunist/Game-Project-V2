@@ -471,7 +471,7 @@ function startGame() {
 			size: 5,
 			is_found: false
 		},
-        {
+		{
 			x_pos: 1100,
 			y_pos: floor_pos_y,
 			size: 2,

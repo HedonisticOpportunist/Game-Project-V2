@@ -20,10 +20,10 @@ function Enemy(x, y, range) {
 		//if enemy is on the ground
 		if (this.y == floor_pos_y - 10) {
 			//body of the enemy 
-			fill('black');
+			fill("#2d132c");
 			ellipse(this.currentX, this.y, 50, 50);
 			//eyes
-			stroke('firebrick');
+			stroke("#801336");
 			strokeWeight(10);
 			point(this.currentX - 8, this.y);
 			point(this.currentX + 8, this.y);
@@ -32,14 +32,18 @@ function Enemy(x, y, range) {
 		//enemy is on platform level
 		else {
 			//body of the enemy 
-			fill('white');
+			fill("#fcf5ee");
 			ellipse(this.currentX, this.y, 50, 50);
 			//eyes
-			stroke('firebrick');
+			stroke("#ffc4d0");
 			strokeWeight(10);
 			point(this.currentX - 8, this.y);
 			point(this.currentX + 8, this.y);
 			noStroke();
+			//wings
+			fill("#fbe8e7");
+			ellipse(this.currentX + 35, this.y, 30, 30);
+			ellipse(this.currentX - 35, this.y, 30, 30);
 
 		}
 	}

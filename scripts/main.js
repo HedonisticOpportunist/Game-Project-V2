@@ -39,13 +39,13 @@ function setup() {
 }
 
 function draw() {
-	background('lightcyan');
+	background("#d3f4ff");
 	noStroke();
 
 	//'3D effect'
-	fill('lightseagreen');
+	fill("#01a9b4");
 	rect(0, floor_pos_y, width, height - floor_pos_y);
-	fill('seagreen')
+	fill("#086972")
 	rect(0, floor_pos_y, width, height / 20);
 	push();
 	translate(scroll_position, 0);
@@ -105,7 +105,7 @@ function draw() {
 
 	//Check that the begin flagpole has been reached
 	if (!begin_flagPole.is_reached) {
-		checkBeginFlagPoleis_reached();
+		beginFlagPoleReached();
 	} else {
 		fill(0, 0, 0);
 		noStroke();

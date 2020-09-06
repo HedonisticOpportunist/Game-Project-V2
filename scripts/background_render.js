@@ -5,7 +5,7 @@
 function drawClouds() {
 	// Draw clouds.
 	for (var i = 0; i < clouds.length; i++) {
-		fill('ghostwhite');
+		fill("#b2dffb");
 		noStroke();
 
 		ellipse(clouds[i].x_pos, clouds[i].y_pos, clouds[i].width, clouds[i].height);
@@ -16,7 +16,7 @@ function drawClouds() {
 function drawMountains() {
 	for (var i = 0; i < mountains.length; i++) {
 		noStroke();
-		fill('whitesmoke');
+		fill("#fffafa");
 
 		triangle(mountains[i].x_pos, mountains[i].y_pos, mountains[i].x_pos + 150, mountains[i].y_pos - 415, mountains[i].x_pos + 350, mountains[i].y_pos);
 	}
@@ -25,10 +25,10 @@ function drawMountains() {
 //Function to draw trees objects.
 function drawTrees() {
 	for (var i = 0; i < trees.length; i++) {
-		fill('palegoldenrod');
+		fill("#e8ded2");
 		rect(trees[i].tree_pos_x, tree_pos_y, 50, 235);
 
-		fill('palegreen');
+		fill("#87dfd6");
 		ellipse(trees[i].tree_pos_x + 20, tree_pos_y, tree_pos_y, tree_pos_y - 50);
 	}
 }
@@ -39,7 +39,7 @@ function drawTrees() {
 //Function to draw canyon objects.
 
 function drawCanyon(t_canyon) {
-	fill('cornsilk');
+	fill("#f0ece3");
 	rect(t_canyon.x_pos, t_canyon.y_pos, t_canyon.width, t_canyon.width + 100);
 }
 //Function to check character whether a character is over a canyon.
@@ -52,7 +52,7 @@ function checkCanyon(t_canyon) {
 	}
 
 	if (is_plummeting) {
-		game_char_y += 1;
+		game_char_y += 5;
 	}
 }
 
@@ -85,7 +85,7 @@ function drawCollectable(t_collectable) {
 	//platform is on ground level
 	else {
 		// Draw collectable items
-		stroke('darkcyan');
+		stroke("#f76b8a");
 		strokeWeight(t_collectable.size + 15);
 		point(t_collectable.x_pos, t_collectable.y_pos);
 
@@ -93,12 +93,12 @@ function drawCollectable(t_collectable) {
 		strokeWeight(t_collectable.size);
 		point(t_collectable.x_pos, t_collectable.y_pos);
 
-		stroke('paleturquoise');
+		stroke("#fcfefe");
 		strokeWeight(t_collectable.size + 10);
 		point(t_collectable.x_pos - 10, t_collectable.y_pos);
 		strokeWeight(5);
 		noStroke();
-		fill('skyblue');
+		fill("#eaf6f6");
 	}
 }
 
@@ -136,7 +136,7 @@ function renderEndFlagPole() {
 	stroke(0, 0, 0);
 
 	line(end_flagPole.x_pos, floor_pos_y, end_flagPole.x_pos, floor_pos_y - 250);
-	fill('turquoise');
+	fill("#bfd8d5");
 	noStroke();
 
 	if (end_flagPole.is_reached) {
@@ -167,7 +167,7 @@ function renderBeginFlagPole() {
 	stroke(0, 0, 0);
 
 	line(begin_flagPole.x_pos, floor_pos_y, begin_flagPole.x_pos, floor_pos_y - 250);
-	fill('darkturquoise');
+	fill("#bfd8d5");
 	noStroke();
 
 	if (begin_flagPole.is_reached) {
@@ -180,7 +180,7 @@ function renderBeginFlagPole() {
 }
 
 //check that the flagpole has been reached
-function checkBeginFlagPoleis_reached() {
+function beginFlagPoleReached() {
 	let distance;
 	distance = abs(game_char_world_x - begin_flagPole.x_pos);
 

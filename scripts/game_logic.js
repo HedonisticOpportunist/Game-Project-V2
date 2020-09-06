@@ -59,7 +59,7 @@ function checkPlayerDie() {
 	    if character is plummeting 
 	    then make lives smaller by one
 	*/
-	if (is_plummeting && lives != 0) {
+	if (is_plummeting && lives != 0 && game_char_y > height) {
 		lives -= 1;
 		startGame();
 	}
@@ -67,8 +67,12 @@ function checkPlayerDie() {
 
 function drawLiveTokens(index) {
 	//draw live tokens
-	fill('cadetblue');
-	stroke('black');
+	fill("#c4c1e0");
+	stroke("#7c73e6");
 	ellipse(index, 20, 25, 25);
+	//eyes
+	fill("#ffe9e3");
+	point(index - 5, 20);
+	point(index + 5, 20);
 	noStroke();
 }
