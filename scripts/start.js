@@ -207,6 +207,24 @@ function startGame() {
 			y_pos: 150,
 			width: 100,
 			height: 80
+		},
+		{
+			x_pos: -1550,
+			y_pos: 150,
+			width: 80,
+			height: 50
+		},
+		{
+			x_pos: -1600,
+			y_pos: 150,
+			width: 100,
+			height: 75
+		},
+		{
+			x_pos: -1650,
+			y_pos: 150,
+			width: 100,
+			height: 75
 		}
 	];
 
@@ -328,11 +346,6 @@ function startGame() {
 			x_pos: 3500,
 			y_pos: floor_pos_y,
 			width: canyons_width
-		},
-		{
-			x_pos: -1600,
-			y_pos: floor_pos_y,
-			width: canyons_width
 		}
 	];
 
@@ -346,6 +359,10 @@ function startGame() {
 		},
 		{
 			x_pos: 100,
+			y_pos: platform_level
+		},
+		{
+			x_pos: 804,
 			y_pos: platform_level
 		},
 		{
@@ -418,7 +435,19 @@ function startGame() {
 			is_found: false
 		},
 		{
-			x_pos: 802,
+			x_pos: 750,
+			y_pos: platform_level,
+			size: 2,
+			is_found: false
+		},
+		{
+			x_pos: 110,
+			y_pos: platform_level,
+			size: 3,
+			is_found: false
+		},
+		{
+			x_pos: 880,
 			y_pos: platform_level,
 			size: 2,
 			is_found: false
@@ -507,12 +536,13 @@ function startGame() {
 	platforms = [];
 
 	//platforms alternate between two colours
-	platforms.push(createPlatforms(100, platform_y, platform_length, 'paleturquoise'));
-	platforms.push(createPlatforms(1200, platform_y, platform_length, 'mediumturquoise'));
-	platforms.push(createPlatforms(1500, platform_y, platform_length, 'paleturquoise'));
+	platforms.push(createPlatforms(100, platform_y, platform_length, "#2bb2bb"));
+	platforms.push(createPlatforms(750, platform_y, platform_length, "#87d4c5"));
+	platforms.push(createPlatforms(1200, platform_y, platform_length, "#2bb2bb"));
+	platforms.push(createPlatforms(1500, platform_y, platform_length, "#87d4c5"));
 
-	platforms.push(createPlatforms(-550, platform_y, platform_length, 'mediumturquoise'));
-	platforms.push(createPlatforms(-850, platform_y, platform_length, 'paleturquoise'));
-	platforms.push(createPlatforms(-1800, platform_y, platform_length, 'mediumturquoise'));
+	platforms.push(createPlatforms(-550, platform_y, platform_length, "#2bb2bb"));
+	platforms.push(createPlatforms(-850, platform_y, platform_length, "#87d4c5"));
+	platforms.push(createPlatforms(-1800, platform_y, platform_length, "#2bb2bb"));
 
 }

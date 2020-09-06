@@ -66,7 +66,7 @@ function drawCollectable(t_collectable) {
 	//collectible is on platform level
 	if (t_collectable.y_pos == platform_level) {
 		// Draw collectable items
-		stroke('aliceblue');
+		stroke("#05dfd7");
 		strokeWeight(t_collectable.size + 15);
 		point(t_collectable.x_pos, t_collectable.y_pos);
 
@@ -74,12 +74,12 @@ function drawCollectable(t_collectable) {
 		strokeWeight(t_collectable.size);
 		point(t_collectable.x_pos, t_collectable.y_pos);
 
-		stroke('cornflowerblue');
+		stroke("#a3f7bf");
 		strokeWeight(t_collectable.size + 10);
 		point(t_collectable.x_pos - 10, t_collectable.y_pos);
 		strokeWeight(5);
 		noStroke();
-		fill('lavender');
+		fill("#eaf6f6");
 
 	}
 	//platform is on ground level
@@ -130,17 +130,18 @@ function checkCollectable(t_collectable) {
 // ---------------------------------
 // End Flagpole render and check functions
 // ---------------------------------
-function renderEndFlagPole() {
+function renderEndFlagPole(sound) {
 	push();
 	strokeWeight(5);
 	stroke(0, 0, 0);
 
 	line(end_flagPole.x_pos, floor_pos_y, end_flagPole.x_pos, floor_pos_y - 250);
-	fill("#bfd8d5");
+	fill("#f3f9fb");
 	noStroke();
 
 	if (end_flagPole.is_reached) {
 		rect(end_flagPole.x_pos, floor_pos_y - 250, 50, 50);
+		sound.stop();
 	} else {
 		rect(end_flagPole.x_pos, floor_pos_y - 50, 50, 50);
 	}
@@ -161,17 +162,18 @@ function checkEndFlagPole() {
 // ---------------------------------
 // Begin flagpole and check functions
 // ---------------------------------
-function renderBeginFlagPole() {
+function renderBeginFlagPole(sound) {
 	push();
 	strokeWeight(5);
 	stroke(0, 0, 0);
 
 	line(begin_flagPole.x_pos, floor_pos_y, begin_flagPole.x_pos, floor_pos_y - 250);
-	fill("#bfd8d5");
+	fill("#bae8e8");
 	noStroke();
 
 	if (begin_flagPole.is_reached) {
 		rect(begin_flagPole.x_pos, floor_pos_y - 250, 50, 50);
+		sound.stop();
 	} else {
 		rect(begin_flagPole.x_pos, floor_pos_y - 50, 50, 50);
 	}
@@ -202,8 +204,8 @@ function createPlatforms(x, y, length, colour) {
 			fill(this.colour);
 
 			//let the platforms shake a little if the 
-			//colour is medium turqouise 
-			if (colour == "mediumturquoise") {
+			//colour is a certain quality 
+			if (colour == "#2bb2bb") {
 				this.x = this.x + random(-0.5, 0.5);
 			}
 
@@ -232,7 +234,7 @@ function renderStar(x, y) {
 	let half_angle = angle / 2.0;
 
 	noStroke();
-	fill('lightyellow');
+	fill("#f3ecc2");
 
 	beginShape();
 	for (var i = 0; i < TWO_PI; i += angle) {

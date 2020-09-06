@@ -3,27 +3,31 @@
 // ------------------------------
 // Function to draw the game character.
 function drawGameChar() {
-	//the game character
+
+	let eyes = "#8d93ab";
+	let head = "#d6e0f0"
+	let body = "#f1f3f8"
+
 	if (is_left && is_falling) {
 		//Jumping to the left
 
 		//head 
 		strokeWeight(2);
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x - 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x - 3, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs
@@ -49,21 +53,21 @@ function drawGameChar() {
 		endShape();
 	} else if (is_right && is_falling) {
 		//head 
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x + 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x + 3, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs
@@ -91,21 +95,21 @@ function drawGameChar() {
 		//Walking, turned left
 
 		//head 
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x - 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x - 3, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs
@@ -134,21 +138,21 @@ function drawGameChar() {
 		//Walking, turned right
 
 		//head 
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x + 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x + 3, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs
@@ -177,23 +181,23 @@ function drawGameChar() {
 		//Jumping facing forwards
 
 		//head 
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 
 		point(game_char_x - 3, game_char_y - 65);
 		point(game_char_x + 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs
@@ -221,23 +225,23 @@ function drawGameChar() {
 		//Standing, facing frontwards
 
 		//head 
-		fill('powderblue');
+		fill(head);
 		ellipse(game_char_x, game_char_y - 62, 25, 25);
 
 		//eyes
-		stroke(0, 204, 204);
+		stroke(eyes);
 		strokeWeight(5);
 
 		point(game_char_x - 3, game_char_y - 65);
 		point(game_char_x + 3, game_char_y - 65);
 
-		stroke(0, 0, 255);
+		stroke(eyes);
 		strokeWeight(5);
 		point(game_char_x, game_char_y - 55);
 
 		//body 
 		strokeWeight(4);
-		fill('skyblue');
+		fill(body);
 		rect(game_char_x - 12, game_char_y - 47, 25, 30);
 
 		//legs

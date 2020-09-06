@@ -7,11 +7,11 @@ However, one of the challenging aspects of adding enemies is taking into conside
  
 Moreover, I found the programmatic aspects of implementing the enemies interesting since the code is more challenging than some of the other ones introduced in the course. It also is important to point out that factory patterns are quite common in video game code. That is why I think learning about these patterns as early as possible is beneficial for anyone interested in writing video games. 
 
-The modifications I made were minor, with the challenge being more on where to place the enemies and determining what the range should be between the playable character and the enemy itself. I also tried to create a design that was cute, but still gloomy in some aspects. 
+The modifications I made were minor, with the challenge being more on where to place the enemies and determining what the range should be between the playable character and the enemy itself. I also tried to create a design that was cute, but still gloomy in some aspects. Another thing I did was change the design in case the enemies were located on the platform. 
  
 EXTENSION 2: PLATFORMS
  
-Initially, I was sceptical of adding platforms and thought that they would be more useful as a sort of ‘resting point’ that offered the player a chance to escape enemies for a bit. However, while refactoring the game, I realised that it would be nice to place collectibles on top of the platform as well as placing enemies hither and thither in order to challenge the player. This is also why the player scores higher when gathering collectibles when on platform level. 
+Initially, I was sceptical of adding platforms and thought that they would be more useful as a sort of ‘resting point’ that offered the player a chance to escape enemies for a bit. However, while refactoring the game, I realised that it would be nice to place collectibles on top of the platform as well as placing enemies to challenge the player. This is also why the player scores higher when gathering collectibles when on platform level. 
 
 The actual changes I made to the code were minor; however, I did add a colour variable that allowed me to alternate between two different coloured platforms throughout the game. I also decided to add stars on the platforms, because I thought it made the game look a bit nicer. 
 
@@ -21,20 +21,27 @@ OTHER NOTES
  
 Other minor additions that I made were that the game has a clearly defined ending and beginning in the form of two flagpoles placed at the beginning (when the player moves to the left) and the end (when the player moves to the right). My partner argued that this made no sense as it went against the philosophy of a platformer; however, I just felt it was nicer to have two flagpoles where you could end a level than have the player wander off into an eternal, never-ending abyss of cyan background once objects were no longer being drawn. As I am not skilled enough yet to dynamically generate objects, this one way to avoid the scenario outlined above. 
 
-Other changes I made were not deleting the jumping sound because I liked it and -- more importantly -- breaking some of the code up sub sections that are shared between several scripts. This made it easier for me to refactor the code and also have less lines of code in a single file. Ultimately, the goal would be to use OO, but -- for now -- this change was sufficient enough for me to be to work in an efficient manner. 
+Other changes I made were not deleting the jumping sound because I liked it and -- more importantly -- breaking some of the code up sub sections that are shared between several scripts. This made it easier for me to refactor the code and also have less lines of code in a single file. Ultimately, the goal would be to use OO, but -- for now -- this change was sufficient enough for me to be able to work in an efficient manner. Otherwise, I have been changing the look of the game and also decided to insert the looping sound, because I liked having it there. 
 
 */
+
 let lives;
 let jump_sound;
+let game_sound;
+let font;
 
 function preload() {
 	jump_sound = loadSound('assets/jump.wav');
+	game_sound = loadSound('assets/80sRetro_1.wav');
+
+	font = loadFont('assets/MontserratAlternates-Black.otf');
 	jump_sound.setVolume(0.1);
 }
 
 //start the game 
 function setup() {
 	lives = 3;
+	game_sound.loop();
 	start = startGame();
 }
 
@@ -84,7 +91,7 @@ function draw() {
 	}
 
 	//Draw end flagpole which is located to the right
-	renderEndFlagPole();
+	renderEndFlagPole(game_sound);
 
 	//Check end flagpole
 	if (!end_flagPole.is_reached) {
@@ -93,15 +100,15 @@ function draw() {
 		fill(0, 0, 0);
 		noStroke();
 
-		textSize(14);
-		textFont('Helvetica');
+		textSize(12);
+		textFont(font);
 		return text("Level complete. Your game score is: " + game_score + ". " +
 			"\n" + "Press space to continue.",
 			end_flagPole.x_pos - 250, floor_pos_y - 350);
 	}
 
 	//Draw begin flagpole which is located towards the left
-	renderBeginFlagPole();
+	renderBeginFlagPole(game_sound);
 
 	//Check that the begin flagpole has been reached
 	if (!begin_flagPole.is_reached) {
@@ -110,8 +117,8 @@ function draw() {
 		fill(0, 0, 0);
 		noStroke();
 
-		textSize(14);
-		textFont('Helvetica');
+		textSize(12);
+		textFont(font);
 		return text("Level complete. Your game score is: " + game_score + ". " +
 			"\n" + " Press space to continue.",
 			begin_flagPole.x_pos + 330, floor_pos_y - 350);
@@ -125,7 +132,9 @@ function draw() {
 		if (is_contact) {
 			if (lives > 0) {
 				lives -= 1;
+				game_sound.stop();
 				startGame();
+				game_sound.play();
 				break;
 			}
 		}
@@ -136,8 +145,8 @@ function draw() {
 	fill(0, 0, 0);
 	noStroke();
 
-	textSize(12);
-	textFont('Verdana');
+	textSize(10);
+	textFont(font);
 	text("Score: " + game_score, 20, 20);
 
 	//Draw live tokens
@@ -149,15 +158,16 @@ function draw() {
 	drawGameChar();
 
 	//Check how many lives the character has left
-	checkPlayerDie(lives);
+	checkPlayerDie(game_sound);
 
 	//Draw game over text
 	if (lives == 0) {
+		game_sound.stop();
 		fill(0, 0, 0);
 		noStroke();
 
-		textSize(14);
-		textFont('Trebuchet MS');
+		textSize(12);
+		textFont(font);
 		return text("Game over. Press space to continue.", game_char_world_x, floor_pos_y - 250);
 	}
 
@@ -189,6 +199,7 @@ function keyPressed() {
 		game_char_y = game_char_y - 100;
 		jump_sound.play();
 	}
+
 
 	/*
 	    continue playing the game if 

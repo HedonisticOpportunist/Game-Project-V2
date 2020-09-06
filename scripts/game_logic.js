@@ -54,14 +54,16 @@ function fall() {
 // ---------------------------------
 // Lives function
 // ---------------------------------
-function checkPlayerDie() {
+function checkPlayerDie(sound) {
 	/* 
 	    if character is plummeting 
 	    then make lives smaller by one
 	*/
 	if (is_plummeting && lives != 0 && game_char_y > height) {
 		lives -= 1;
+		sound.stop();
 		startGame();
+		sound.play();
 	}
 }
 
