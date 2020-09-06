@@ -168,7 +168,7 @@ function draw() {
 
 		textSize(12);
 		textFont(font);
-		return text("Game over. Press space to continue.", game_char_world_x, floor_pos_y - 250);
+		return text("Game over. Press space to continue.", game_char_x, floor_pos_y - 250);
 	}
 
 	//Game interaction logic
