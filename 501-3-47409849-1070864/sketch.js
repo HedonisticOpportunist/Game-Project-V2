@@ -27,36 +27,31 @@ but you should ONLY use the following commands:
 var backgroundImg, chessPieceImg;
 
 function preload() {
-    backgroundImg = loadImage("background.jpg");
-    chessPieceImg = loadImage("Piece.png");
+  backgroundImg = loadImage("background.jpg");
+  chessPieceImg = loadImage("Piece.png");
 }
 
 function setup() {
-    createCanvas(backgroundImg.width, backgroundImg.height);
-    image(backgroundImg, 0, 0);
-    imageMode(CENTER);
+  createCanvas(backgroundImg.width, backgroundImg.height);
+  image(backgroundImg, 0, 0);
+  imageMode(CENTER);
 }
 
 function draw() {
-    // add your for loop below
-    
-    //rows
-    for (var j = 0; j < 8; j++)
-    {
-        //columns 
-        for (var i = 0; i < 3; i++)
-        {
-            if (i == 1)
-            {
-                image(chessPieceImg, 542 + j * 65, 426)
-            }
-            else
-            {
-                image(chessPieceImg, 611 + j * 65, 350 + i * 74)     
-            }
-                
-        }
-            
+  // add your for loop below
+
+  //rows
+  for (var j = 0; j < 8; j++) {
+    //columns 
+    for (var i = 0; i < 3; i++) {
+      if (i == 1) {
+        image(chessPieceImg, 542 + j * 65, 426)
+      } else {
+        image(chessPieceImg, 611 + j * 65, 350 + i * 74)
+      }
+
     }
+
+  }
 
 }
