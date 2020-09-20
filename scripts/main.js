@@ -1,9 +1,11 @@
 /*
 EXTENSION 1: ENEMIES
 
-I also believe that games should be entertaining, which was one of the leading mottos for me while designing this extension. 
+I believe that games should be entertaining, which was one of the leading mottos for me while designing this extension. 
 
-I added enemies on top of the platforms and on the ground in order to challenge the player. This is also why the player scores higher when gathering collectibles when on platform level. Moreover, I changed the design of the enemies depending on where they were located in order to differentiate them from each other. In terms of design, I tried to make the enemies somewhat cute but still threatening. This was a bit challenging as I am still relatively new to using pj5 in terms of designing non-static objects. 
+I added enemies on top of the platforms and on the ground in order to challenge the player. This is also why the player scores higher when gathering collectibles when on platform level. Moreover, I changed the design of the enemies depending on where they were located in order to differentiate them from each other. I also made the distance range different if the enemy was on a platform. 
+
+In terms of design, I tried to make the enemies somewhat cute but still threatening. This was a bit challenging as I am still relatively new to using pj5 in terms of designing non-static objects. 
 
 The ultimate challenge of coding a video game is getting people interested in playing it. Hence, playability is one of the most challenging aspects. In this vein, I do wonder if I went overboard and affected the entertainment value of the game in pursuit of making the game more challenging. 
 
@@ -212,7 +214,7 @@ function keyPressed() {
     }
 
     /*
-        replay game if lives = 0
+        replay game if lives equals 0
     */
     if (lives == 0 && keyCode == 32) {
         setup();

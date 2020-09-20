@@ -2,7 +2,7 @@
 // Game logic 
 // ----------------------------------
 function moveLeft() {
-    // Logic to make the game character move or the background scroll.
+    // Logic to make the game character move on the background scroll.
     if (is_left) {
         if (game_char_x > width * 0.2) {
             game_char_x -= 5;
@@ -26,7 +26,7 @@ function fall() {
 
     /* 
         Logic to make the game character rise and fall.
-        if game character is above ground make it fall
+        If the game character is above ground make it fall.
     */
     let is_contact = false;
 

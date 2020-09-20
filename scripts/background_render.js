@@ -102,7 +102,7 @@ function drawCollectable(t_collectable) {
     }
 }
 
-// Function to check character has collected an item.
+// Function to check if character has collected an item.
 function checkCollectable(t_collectable) {
     //declaration of range variable used
     //within this function only 
