@@ -35,200 +35,200 @@ let game_sound;
 let font;
 
 function preload() {
-    jump_sound = loadSound('assets/jump.wav');
-    game_sound = loadSound('assets/80sRetro_1.wav');
+  jump_sound = loadSound('assets/jump.wav');
+  game_sound = loadSound('assets/80sRetro_1.wav');
 
-    font = loadFont('assets/MontserratAlternates-Black.otf');
-    jump_sound.setVolume(0.1);
+  font = loadFont('assets/MontserratAlternates-Black.otf');
+  jump_sound.setVolume(0.1);
 }
 
 //start the game
 function setup() {
-    lives = 3;
-    game_sound.loop();
-    start = startGame();
+  lives = 3;
+  game_sound.loop();
+  start = startGame();
 }
 
 function draw() {
-    background("#d3f4ff");
-    noStroke();
+  background("#d3f4ff");
+  noStroke();
 
-    //'3D effect'
-    fill("#01a9b4");
-    rect(0, floor_pos_y, width, height - floor_pos_y);
-    fill("#086972")
-    rect(0, floor_pos_y, width, height / 20);
-    push();
-    translate(scroll_position, 0);
+  //'3D effect'
+  fill("#01a9b4");
+  rect(0, floor_pos_y, width, height - floor_pos_y);
+  fill("#086972")
+  rect(0, floor_pos_y, width, height / 20);
+  push();
+  translate(scroll_position, 0);
 
-    //Draw clouds.
-    drawClouds();
+  //Draw clouds.
+  drawClouds();
 
-    //Draw mountains.
-    drawMountains();
+  //Draw mountains.
+  drawMountains();
 
-    //Draw trees.
-    drawTrees();
+  //Draw trees.
+  drawTrees();
 
-    //Draw canyons.
-    for (var i = 0; i < canyons.length; i++) {
-        drawCanyon(canyons[i]);
-        checkCanyon(canyons[i]);
+  //Draw canyons.
+  for (var i = 0; i < canyons.length; i++) {
+    drawCanyon(canyons[i]);
+    checkCanyon(canyons[i]);
+  }
+
+  //Draw collectable items.
+  for (var i = 0; i < collectibles.length; i++) {
+    if (!collectibles[i].is_found) {
+      drawCollectable(collectibles[i]);
+      checkCollectable(collectibles[i]);
     }
+  }
 
-    //Draw collectable items.
-    for (var i = 0; i < collectibles.length; i++) {
-        if (!collectibles[i].is_found) {
-            drawCollectable(collectibles[i]);
-            checkCollectable(collectibles[i]);
-        }
-    }
+  //Draw stars on the platform
+  for (var i = 0; i < stars.length; i++) {
+    renderStar(stars[i].x_pos, stars[i].y_pos);
+  }
 
-    //Draw stars on the platform
-    for (var i = 0; i < stars.length; i++) {
-        renderStar(stars[i].x_pos, stars[i].y_pos);
-    }
+  //Draw platforms
+  for (var i = 0; i < platforms.length; i++) {
+    platforms[i].draw();
+  }
 
-    //Draw platforms
-    for (var i = 0; i < platforms.length; i++) {
-        platforms[i].draw();
-    }
+  //Draw end flagpole which is located to the right
+  renderEndFlagPole(game_sound);
 
-    //Draw end flagpole which is located to the right
-    renderEndFlagPole(game_sound);
-
-    //Check end flagpole
-    if (!end_flagPole.is_reached) {
-        checkEndFlagPole();
-    } else {
-        fill(0, 0, 0);
-        noStroke();
-
-        textSize(12);
-        textFont(font);
-        return text("Level complete. Your game score is: " + game_score + ". " +
-            "\n" + "Press space to continue.",
-            end_flagPole.x_pos - 250, floor_pos_y - 350);
-    }
-
-    //Draw begin flagpole which is located towards the left
-    renderBeginFlagPole(game_sound);
-
-    //Check that the begin flagpole has been reached
-    if (!begin_flagPole.is_reached) {
-        beginFlagPoleReached();
-    } else {
-        fill(0, 0, 0);
-        noStroke();
-
-        textSize(12);
-        textFont(font);
-        return text("Level complete. Your game score is: " + game_score + ". " +
-            "\n" + " Press space to continue.",
-            begin_flagPole.x_pos + 330, floor_pos_y - 350);
-    }
-
-    //Draw enemies
-    for (var i = 0; i < enemies.length; i++) {
-        enemies[i].draw();
-        var is_contact = enemies[i].checkContact(game_char_world_x, game_char_y);
-
-        if (is_contact) {
-            if (lives > 0) {
-                lives -= 1;
-                game_sound.stop();
-                startGame();
-                game_sound.play();
-                break;
-            }
-        }
-    }
-    pop();
-
-    //Draw game score token
+  //Check end flagpole
+  if (!end_flagPole.is_reached) {
+    checkEndFlagPole();
+  } else {
     fill(0, 0, 0);
     noStroke();
 
-    textSize(10);
+    textSize(12);
     textFont(font);
-    text("Score: " + game_score, 20, 20);
+    return text("Level complete. Your game score is: " + game_score + ". " +
+      "\n" + "Press space to continue.",
+      end_flagPole.x_pos - 250, floor_pos_y - 350);
+  }
 
-    //Draw live tokens
-    for (var i = 0; i < lives; i++) {
-        drawLiveTokens(100 + (i * 35));
-    }
+  //Draw begin flagpole which is located towards the left
+  renderBeginFlagPole(game_sound);
 
-    //Draw game character.
-    drawGameChar();
+  //Check that the begin flagpole has been reached
+  if (!begin_flagPole.is_reached) {
+    beginFlagPoleReached();
+  } else {
+    fill(0, 0, 0);
+    noStroke();
 
-    //Check how many lives the character has left
-    checkPlayerDie(game_sound);
+    textSize(12);
+    textFont(font);
+    return text("Level complete. Your game score is: " + game_score + ". " +
+      "\n" + " Press space to continue.",
+      begin_flagPole.x_pos + 330, floor_pos_y - 350);
+  }
 
-    //Draw game over text
-    if (lives == 0) {
+  //Draw enemies
+  for (var i = 0; i < enemies.length; i++) {
+    enemies[i].draw();
+    var is_contact = enemies[i].checkContact(game_char_world_x, game_char_y);
+
+    if (is_contact) {
+      if (lives > 0) {
+        lives -= 1;
         game_sound.stop();
-        fill(0, 0, 0);
-        noStroke();
-
-        textSize(12);
-        textFont(font);
-        return text("Game over. Press space to continue.", game_char_x, floor_pos_y - 250);
+        startGame();
+        game_sound.play();
+        break;
+      }
     }
+  }
+  pop();
 
-    //Game interaction logic
-    moveLeft();
-    moveRight();
-    fall();
+  //Draw game score token
+  fill(0, 0, 0);
+  noStroke();
 
-    //Update real position of gameChar for collision detection.
-    game_char_world_x = game_char_x - scroll_position;
+  textSize(10);
+  textFont(font);
+  text("Score: " + game_score, 20, 20);
+
+  //Draw live tokens
+  for (var i = 0; i < lives; i++) {
+    drawLiveTokens(100 + (i * 35));
+  }
+
+  //Draw game character.
+  drawGameChar();
+
+  //Check how many lives the character has left
+  checkPlayerDie(game_sound);
+
+  //Draw game over text
+  if (lives == 0) {
+    game_sound.stop();
+    fill(0, 0, 0);
+    noStroke();
+
+    textSize(12);
+    textFont(font);
+    return text("Game over. Press space to continue.", game_char_x, floor_pos_y - 250);
+  }
+
+  //Game interaction logic
+  moveLeft();
+  moveRight();
+  fall();
+
+  //Update real position of gameChar for collision detection.
+  game_char_world_x = game_char_x - scroll_position;
 
 }
 // ---------------------
 // Key control functions
 // ---------------------
 function keyPressed() {
-    //left arrow key sets is_left to true;
-    if (keyCode == 37) {
-        is_left = true;
-    }
+  //left arrow key sets is_left to true;
+  if (keyCode == 37) {
+    is_left = true;
+  }
 
-    //right arrowy key sets is_right to true
-    if (keyCode == 39) {
-        is_right = true;
-    }
+  //right arrowy key sets is_right to true
+  if (keyCode == 39) {
+    is_right = true;
+  }
 
-    //space key makes the character jump when on platform or on the ground
-    if (keyCode == 32 && (game_char_y == floor_pos_y || game_char_y == player_on_platform) && lives != 0) {
-        game_char_y = game_char_y - 100;
-        jump_sound.play();
-    }
+  //space key makes the character jump when on platform or on the ground
+  if (keyCode == 32 && (game_char_y == floor_pos_y || game_char_y == player_on_platform) && lives != 0) {
+    game_char_y = game_char_y - 100;
+    jump_sound.play();
+  }
 
 
-    /*
-        continue playing the game if
-        level one has been reached
-    */
-    if ((end_flagPole.is_reached && keyCode == 32) || (begin_flagPole.is_reached && keyCode == 32)) {
-        setup();
-    }
+  /*
+      continue playing the game if
+      level one has been reached
+  */
+  if ((end_flagPole.is_reached && keyCode == 32) || (begin_flagPole.is_reached && keyCode == 32)) {
+    setup();
+  }
 
-    /*
-        replay game if lives equals 0
-    */
-    if (lives == 0 && keyCode == 32) {
-        setup();
-    }
+  /*
+      replay game if lives equals 0
+  */
+  if (lives == 0 && keyCode == 32) {
+    setup();
+  }
 }
 
 function keyReleased() {
-    //left arrow key sets is_left to false;
-    if (keyCode == 37) {
-        is_left = false;
-    }
+  //left arrow key sets is_left to false;
+  if (keyCode == 37) {
+    is_left = false;
+  }
 
-    //right arrow key sets is_right to false
-    if (keyCode == 39) {
-        is_right = false;
-    }
+  //right arrow key sets is_right to false
+  if (keyCode == 39) {
+    is_right = false;
+  }
 }
