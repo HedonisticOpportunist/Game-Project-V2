@@ -49,7 +49,7 @@ function Enemy(x, y, range) {
     }
     this.checkContact = function (gc_x, gc_y) {
         //depending on where the enemy is located, the 
-        //distance range is diferent 
+        //distance range is different 
         let enemy_distance = dist(gc_x, gc_y, this.currentX, this.y);
         if (this.y == floor_pos_y - 10) {
             if (enemy_distance < 15) {

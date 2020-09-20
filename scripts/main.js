@@ -23,7 +23,7 @@ Other additions that I made to the game were that it has a defined ending and be
 
 My partner argued that this made no sense as it went against the philosophy of a platformer; however, I felt it was nicer to have two flagpoles where you could end a level than have the player wander off into an eternal, never-ending abyss of a cyan background once objects were no longer being drawn. As I am not skilled enough yet to dynamically generate objects, this was one way to avoid the scenario outlined above.
 
-Other changes I made were not deleting the jumping sound because I liked it and -- more importantly -- breaking some of the code into sub sections that are shared between several scripts. This made it easier for me to refactor the code and also have less lines of code in a single file. Ultimately, the goal would be to use OO, but -- for now -- this change was sufficient enough for me to be able to work in an efficient manner. 
+Other changes I made were not deleting the jumping sound because I liked it and -- more importantly -- breaking some of the code into sub sections that are shared between several scripts. This made it easier for me to refactor the code. Ultimately, the goal would be to use OO, but I will revisit this at a later point. 
 
 Otherwise, I have consistently been refactoring the design of the game and also added a looping sound that is reminiscent of 80s arcade games. Ultimately, the long term goal is to refactor this game completely once I am more confident in my programming abilities.
 
@@ -227,7 +227,7 @@ function keyReleased() {
         is_left = false;
     }
 
-    //right arrowy key sets is_right to false
+    //right arrow key sets is_right to false
     if (keyCode == 39) {
         is_right = false;
     }

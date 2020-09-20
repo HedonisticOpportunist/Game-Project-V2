@@ -42,7 +42,7 @@ function drawCanyon(t_canyon) {
     fill("#f0ece3");
     rect(t_canyon.x_pos, t_canyon.y_pos, t_canyon.width, t_canyon.width + 100);
 }
-//Function to check character whether a character is over a canyon.
+//Function to check whether the character is over a canyon.
 function checkCanyon(t_canyon) {
     let distance;
     distance = int(dist(t_canyon.x_pos, t_canyon.y_pos, game_char_world_x, game_char_y));
@@ -82,7 +82,7 @@ function drawCollectable(t_collectable) {
         fill("#eaf6f6");
 
     }
-    //platform is on ground level
+    //collectible is on ground level
     else {
         // Draw collectable items
         stroke("#f76b8a");
@@ -119,7 +119,7 @@ function checkCollectable(t_collectable) {
             game_score += 1;
         }
 
-
+        //increment game score by 2 if the collectible is on the platform
         if (t_collectable.is_found && t_collectable.y_pos == platform_level) {
             game_score += 2;
         }
