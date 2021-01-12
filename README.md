@@ -8,7 +8,4 @@ URL:
 
 https://hedonisticopportunist.github.io/final_game_submission/index
 
-First iteration of project: 
-
-https://github.com/HedonisticOpportunist/game_project_first_submission
 
