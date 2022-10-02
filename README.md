@@ -1,6 +1,6 @@
 # *final_game_submission*
 
-A sidescroller written for Introduction to Programming I 2019/2020 (UoL).
+The final version of a side scroll game written for Introduction to Programming I 2019/2020 (University of London).
 
 https://london.ac.uk/courses/introduction-programming-i
 
