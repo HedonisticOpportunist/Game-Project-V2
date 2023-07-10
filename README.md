@@ -6,6 +6,6 @@ https://london.ac.uk/courses/introduction-programming-i
 
 URL: 
 
-https://hedonisticopportunist.github.io/game_project_v2/index
+https://hedonisticopportunist.github.io/Game-Project-V2/
 
 
